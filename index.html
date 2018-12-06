@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title> TConnect App</title>
+	<style type="text/css">
+		.closeButton{
+			position:absolute;
+			top:0px;
+			right:2px;
+			width:32px;
+			height:32px;
+			background-color:transparent;
+			background-image: url('image/button_close.png");
+			border:none;
+			z-index:2;
+			opacity: 0.4;
+		}
+		.closeButton:hover{opacity:1}
+	</style>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="../js/easyrtc.js"></script>
+	<script type="text/javascript">
+		function connect(){
+			easyRTC.setLoggedInListener(convertListToButtons);
+			easyRTC.initManaged("audioVideo","mirror",["otherguy"],function(){});
+		}
+		
+		function convertListToButtons(contactList){
+			
+			var container = document.getElementById('contacts');
+			
+			while(container.hasChildNodes()){
+					container.removeChild(container.lastChild);
+			}
+			
+			for(var i in contactList){
+				var button = document.createElement('button');
+				
+				button.onclick = function(easyrtcid){
+					return function(){
+						performCall(easyrtcid);
+					}
+				}(i);
+				label = document.createTextNode(i);
+				button.appendChild(label);
+				container.appendChild(button);
+			}
+		}
+		
+		function performCall(otherEasyrtcid){
+			easyRTC.hangupAll();
+			
+			var successCB = function() {};
+			
+			var failureCB = function(error_message){
+				console.log(error_message);
+			};
+			easyRTC.call(otherEasyrtcid, successCB,failureCB,null);
+		}
+	</script>
+</head>
+
+<body onload="connect()">
+	My contacts<br />
+	<div id="contacts"></div><br />
+	<hr />
+	<video style="float:left" width="320" height="240" id="mirror"> </video>
+	
+	<div style=margin-left:1em;float:left;position:relative;width:320px">
+		<video style="float:left" width="320" height="240" id="otherguy"> </video>
+	</div>
+</body>
+</html>

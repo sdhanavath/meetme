@@ -1,0 +1,32 @@
+
+simplewebrtc:
+
+API Key: 282af81d82418156882dc4be
+
+
+Frameworks:
+1/ https://webrtc.org
+
+2/ 	http://www.easyrtc.com/    
+	https://github.com/priologic/easyrtc
+3/  https://accounts.simplewebrtc.com/
+	https://github.com/andyet/simplewebrtc-demo-app
+
+
+Online Meeting solutions:
+
+1/ https://www.gotomeeting.com
+2/ https://www.adobe.com/products/adobeconnect.html
+3/ https://zoom.us/
+4/ 
+
+
+
+
+
+
+Reference:
+
+https://www.gartner.com/doc/reprints?id=1-5ET2NJA&ct=180905&st=sb
+
+
